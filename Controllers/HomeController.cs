@@ -23,23 +23,25 @@ namespace Passcode.Controllers
                 chars[i] = validChars[rChar.Next(validChars.Length)];
             }
 
+            if (HttpContext.Session.GetInt32("count") == null)
+            {
+                HttpContext.Session.SetInt32("count", 0);
+            }
+            int count = (int)HttpContext.Session.GetInt32("count");
+
+            if (count >= 0)
+            {
+                count++;
+                HttpContext.Session.SetInt32("count", count);
+            }
 
 
             PassGen passcode = new PassGen()
             {
                 RandPasscode = new string(chars),
-                Count = +1
+                Count = count
             };
-
-            PassGen count = new PassGen()
-            {
-                Count = 0
-            };
-
-
             return View("Index", passcode);
         }
-
-
     }
 }

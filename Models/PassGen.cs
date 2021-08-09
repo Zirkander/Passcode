@@ -7,7 +7,7 @@ namespace Passcode.Models
 {
     public class PassGen
     {
-        public int Num { get; set; }
-        public string Char { get; set; }
+        public int Count { get; set; }
+        public string RandPasscode { get; set; }
     }
 }
